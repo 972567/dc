@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Discord Dev Intro</title>
+  <style>
+    :root {
+      --discord-blurple: #5865f2;
+      --discord-dark: #23272a;
+      --discord-light: #99aab5;
+      --discord-white: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--discord-dark);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: var(--discord-white);
+      overflow: hidden;
+      padding: 20px;
+    }
+
+    .container {
+      text-align: center;
+      max-width: 800px;
+    }
+
+    #circle {
+      width: 20px;
+      height: 20px;
+      background-color: var(--discord-blurple);
+      border-radius: 50%;
+      margin: 0 auto 1.5rem auto;
+      animation: pulse 1s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.7; }
+      50% { transform: scale(1.5); opacity: 1; }
+      100% { transform: scale(1); opacity: 0.7; }
+    }
+
+    #writer {
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--discord-blurple);
+      display: inline-block;
+      min-height: 2.5em;
+    }
+
+    .char {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeInChar 0.3s forwards;
+    }
+
+    @keyframes fadeInChar {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .subtitle {
+      margin-top: 1.5rem;
+      font-size: 1.1rem;
+      color: var(--discord-light);
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .highlight {
+      background-color: rgba(88, 101, 242, 0.3);
+      padding: 2px 6px;
+      border-radius: 6px;
+      color: var(--discord-white);
+    }
+
+    .highlight:hover {
+      background-color: rgba(242, 155, 88, 0.6);
+      cursor: pointer;
+    }
+
+    .info {
+      margin-top: 1rem;
+      opacity: 0;
+      color: var(--discord-light);
+      font-size: 1rem;
+      animation: fadeInInfo 1.2s ease forwards;
+      animation-delay: 3.5s;
+    }
+
+    @keyframes fadeInInfo {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .footer {
+      margin-top: 3rem;
+      font-size: 1rem;
+      color: var(--discord-light);
+    }
+
+    .footer a {
+      color: var(--discord-blurple);
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    .custom-hr {
+      width: 5%;
+      margin: 35px auto;
+      border: none;
+      border-top: 4px solid var(--discord-light);
+      opacity: 0.6;
+      border-radius: 999px;
+      
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="circle"></div>
+    <div id="writer"></div>
+    <div id="subtitle" class="subtitle">
+      Developer for 4+ years. I code 
+      <span class="highlight">Javascript</span>, 
+      <span class="highlight">Lua</span>, 
+      <span class="highlight">Python</span>, and 
+      <span class="highlight">C++</span>. That's it.
+      <hr class="custom-hr" />
+      <div id="info" class="info">
+      I like <span class="highlight">Kendrick Lamar, J. Cole, and Joey Bada$$</span> because they are great artists and lyricists.
+    </div>
+  </div>
+
+  <script>
+    const text = "DEV-C.OM/WUDK";
+    const writer = document.getElementById("writer");
+    const subtitle = document.getElementById("subtitle");
+    const circle = document.getElementById("circle");
+    const info = document.getElementById("info");
+
+    let index = 0;
+    const delayBeforeTyping = 1500;
+
+    let typingSpeed = 50; 
+    if (text.length > 20) {
+      typingSpeed = 80;
+    }
+
+    function typeNextChar() {
+      if (index < text.length) {
+        const span = document.createElement("span");
+        span.textContent = text.charAt(index);
+        span.classList.add("char");
+        writer.appendChild(span);
+        index++;
+        setTimeout(typeNextChar, typingSpeed);
+      } else {
+        subtitle.style.opacity = 1;
+      }
+    }
+
+    window.onload = () => {
+      setTimeout(() => {
+        circle.style.display = "none";
+        typeNextChar();
+      }, delayBeforeTyping);
+    };
+  </script>
+</body>
+</html>
