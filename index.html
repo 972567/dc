@@ -1,3 +1,10 @@
+<!-- [[
+
+CREDIT GIVEN TO @c.om (discord) / @wudk 
+DISCORD PLEASE GIVE ME MY ACCOUNT BACK
+
+]] -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -82,7 +89,7 @@
       color: var(--discord-white);
     }
 
-    .highlight:hover {
+      .highlight:hover {
       background-color: rgba(242, 155, 88, 0.6);
       cursor: pointer;
     }
@@ -101,6 +108,7 @@
         opacity: 1;
       }
     }
+    /* not to be confused with fadeInChar... am i using this? No idea. Only table: .info{} ^ */
 
     .footer {
       margin-top: 3rem;
@@ -124,7 +132,7 @@
       border-top: 4px solid var(--discord-light);
       opacity: 0.6;
       border-radius: 999px;
-      
+      /*  border-width: 10%;  */
     }
 
   </style>
@@ -153,11 +161,11 @@
     const info = document.getElementById("info");
 
     let index = 0;
-    const delayBeforeTyping = 1500;
+    const delay_before_typing = 1500;
 
-    let typingSpeed = 50; 
+    let typing_speed = 50; 
     if (text.length > 20) {
-      typingSpeed = 80;
+      typing_speed = 80;
     }
 
     function typeNextChar() {
@@ -167,7 +175,7 @@
         span.classList.add("char");
         writer.appendChild(span);
         index++;
-        setTimeout(typeNextChar, typingSpeed);
+        setTimeout(typeNextChar, typing_speed);
       } else {
         subtitle.style.opacity = 1;
       }
@@ -177,7 +185,7 @@
       setTimeout(() => {
         circle.style.display = "none";
         typeNextChar();
-      }, delayBeforeTyping);
+      }, delay_before_typing);
     };
   </script>
 </body>
